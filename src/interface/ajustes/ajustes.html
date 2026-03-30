@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ThirdEye — Configurações</title>
+  <link rel="stylesheet" href="ajustes.css">
+</head>
+<body>
+  <div class="container">
+    <header class="cabecalho">
+      <h1>◉ ThirdEye — Configurações</h1>
+      <p>Gerencie suas preferências de privacidade e listas personalizadas.</p>
+    </header>
+
+    <!-- Preferências gerais -->
+    <div class="cartao">
+      <h2>⚙ Preferências Gerais</h2>
+      <div class="opcao">
+        <div class="opcao-info">
+          <label>Bloqueio de Rastreadores</label>
+          <span class="opcao-desc">Bloqueia automaticamente requisições a domínios de rastreamento conhecidos.</span>
+        </div>
+        <label class="interruptor">
+          <input type="checkbox" id="chkBloqueio" checked>
+          <span class="trilho"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Lista de bloqueio -->
+    <div class="cartao">
+      <h2>▲ Lista de Bloqueio Personalizada</h2>
+      <p class="cartao-desc">Adicione domínios que deseja bloquear além da lista padrão.</p>
+      <div class="campo-adicionar">
+        <input type="text" id="inputBloqueio" placeholder="Ex: rastreador.exemplo.com">
+        <button id="btnAdicionarBloqueio" class="btn btn-perigo">+ Adicionar</button>
+      </div>
+      <div class="lista-container" id="containerBloqueio">
+        <div class="estado-vazio">Nenhum domínio personalizado adicionado.</div>
+      </div>
+      <div class="acoes-lista">
+        <button id="btnExportarBloqueio" class="btn btn-neutro btn-pequeno">⬇ Exportar lista</button>
+        <button id="btnImportarBloqueio" class="btn btn-neutro btn-pequeno">⬆ Importar lista</button>
+        <input type="file" id="arquivoBloqueio" accept=".txt,.csv,.json" style="display:none">
+      </div>
+    </div>
+
+    <!-- Lista de permissão -->
+    <div class="cartao">
+      <h2>✓ Lista de Permissão</h2>
+      <p class="cartao-desc">Domínios que nunca serão bloqueados, mesmo que estejam na lista de rastreadores.</p>
+      <div class="campo-adicionar">
+        <input type="text" id="inputPermissao" placeholder="Ex: metricas.meusite.com">
+        <button id="btnAdicionarPermissao" class="btn btn-ok">+ Adicionar</button>
+      </div>
+      <div class="lista-container" id="containerPermissao">
+        <div class="estado-vazio">Nenhum domínio na lista de permissão.</div>
+      </div>
+      <div class="acoes-lista">
+        <button id="btnExportarPermissao" class="btn btn-neutro btn-pequeno">⬇ Exportar lista</button>
+        <button id="btnImportarPermissao" class="btn btn-neutro btn-pequeno">⬆ Importar lista</button>
+        <input type="file" id="arquivoPermissao" accept=".txt,.csv,.json" style="display:none">
+      </div>
+    </div>
+
+    <!-- Sensibilidade do Score -->
+    <div class="cartao">
+      <h2>◉ Sensibilidade da Pontuação</h2>
+      <p class="cartao-desc">Ajuste o nível de rigor na avaliação de privacidade. Modos mais rigorosos penalizam mais cada infração.</p>
+      <div class="controle-sensibilidade">
+        <div class="sensibilidade-rotulos">
+          <span>Relaxado</span>
+          <span>Equilibrado</span>
+          <span>Rigoroso</span>
+        </div>
+        <input type="range" id="sliderSensibilidade" min="0" max="2" step="1" value="1" class="slider">
+        <p class="sensibilidade-desc" id="descSensibilidade">Modo equilibrado — pesos padrão para cada categoria.</p>
+      </div>
+    </div>
+
+    <!-- Metodologia de pontuação -->
+    <div class="cartao">
+      <h2>◉ Metodologia — Nota de Privacidade</h2>
+      <p class="cartao-desc">A nota (0–100) é calculada por um sistema de pesos relativos. Cada categoria de risco tem um peso máximo, e a penalidade é proporcional à quantidade de problemas encontrados.</p>
+
+      <table class="tabela-metodologia">
+        <thead>
+          <tr>
+            <th>Categoria de Risco</th>
+            <th>Peso Máximo</th>
+            <th>Cálculo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Domínios de terceiros</td>
+            <td>25 pontos</td>
+            <td>Proporcional (até 15 domínios = 100%)</td>
+          </tr>
+          <tr>
+            <td>Cookies de terceiros</td>
+            <td>20 pontos</td>
+            <td>Proporcional (até 10 cookies = 100%)</td>
+          </tr>
+          <tr>
+            <td>Cookies de longa duração</td>
+            <td>15 pontos</td>
+            <td>Proporcional (até 3 = 100%)</td>
+          </tr>
+          <tr>
+            <td>Armazenamento HTML5</td>
+            <td>10 pontos</td>
+            <td>Binário (detectado ou não)</td>
+          </tr>
+          <tr>
+            <td>Impressão digital (Canvas)</td>
+            <td>15 pontos</td>
+            <td>Binário (detectado ou não)</td>
+          </tr>
+          <tr>
+            <td>Sincronismo de cookies</td>
+            <td>5 pontos</td>
+            <td>Binário (detectado ou não)</td>
+          </tr>
+          <tr>
+            <td>Sequestro (Hijacking)</td>
+            <td>10 pontos</td>
+            <td>Binário (detectado ou não)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="legenda-notas">
+        <div class="legenda-item">
+          <span class="legenda-cor" style="background:#3fb950"></span>
+          <span>80–100: Boa privacidade</span>
+        </div>
+        <div class="legenda-item">
+          <span class="legenda-cor" style="background:#d29922"></span>
+          <span>60–79: Privacidade moderada</span>
+        </div>
+        <div class="legenda-item">
+          <span class="legenda-cor" style="background:#db6d28"></span>
+          <span>40–59: Privacidade comprometida</span>
+        </div>
+        <div class="legenda-item">
+          <span class="legenda-cor" style="background:#f85149"></span>
+          <span>0–39: Privacidade crítica</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sobre -->
+    <div class="cartao">
+      <h2>ℹ Sobre</h2>
+      <p class="cartao-desc">
+        <strong>ThirdEye v1.0.0</strong><br>
+        Monitor de privacidade para Firefox, desenvolvido para a disciplina de Cybersegurança do Insper.<br><br>
+        <strong>Funcionalidades:</strong> Detecção de domínios de terceiros, cookies (1ª/3ª parte, sessão/permanente),
+        cookies de longa duração, armazenamento HTML5, impressão digital por Canvas, sincronismo de cookies,
+        ameaças de sequestro, pontuação de privacidade por pesos e bloqueio personalizável.
+      </p>
+    </div>
+
+    <footer class="rodape">
+      <button id="btnSalvar" class="btn btn-primario btn-grande">◉ Salvar Configurações</button>
+      <span id="statusSalvar" class="status-salvar"></span>
+    </footer>
+  </div>
+
+  <script src="ajustes.js"></script>
+</body>
+</html>

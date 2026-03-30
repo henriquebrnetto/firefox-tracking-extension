@@ -1,0 +1,723 @@
+/* ==========================================
+   ThirdEye — Estilos do Painel (Popup)
+   Tema: Escuro (dark mode)
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  font-size: 13px;
+  color: #c9d1d9;
+  background: #0d1117;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ==========================================
+   Cabeçalho
+   ========================================== */
+.cabecalho {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  padding: 14px 16px;
+  border-bottom: 1px solid #21262d;
+}
+
+.cabecalho-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: #58a6ff;
+  letter-spacing: -0.5px;
+}
+
+.info-site {
+  font-size: 11px;
+  color: #8b949e;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Interruptor de bloqueio */
+.controle-bloqueio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rotulo-bloqueio {
+  font-size: 10px;
+  color: #8b949e;
+}
+
+.interruptor {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.interruptor input {
+  display: none;
+}
+
+.trilho {
+  position: absolute;
+  inset: 0;
+  background: #30363d;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.trilho::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: #c9d1d9;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.interruptor input:checked + .trilho {
+  background: #238636;
+}
+
+.interruptor input:checked + .trilho::before {
+  transform: translateX(16px);
+}
+
+/* ==========================================
+   Nota de Privacidade (barra horizontal)
+   ========================================== */
+.secao-nota {
+  padding: 14px 16px;
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+}
+
+.nota-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.nota-titulo {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #8b949e;
+  font-weight: 600;
+}
+
+.nota-valor {
+  font-size: 28px;
+  font-weight: 800;
+  color: #3fb950;
+  line-height: 1;
+  transition: color 0.5s;
+}
+
+.nota-barra-fundo {
+  width: 100%;
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.nota-barra-preenchimento {
+  height: 100%;
+  width: 0%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f85149, #d29922, #3fb950);
+  transition: width 1s ease;
+}
+
+.nota-descricao {
+  font-size: 11px;
+  color: #8b949e;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   Resumo (contadores)
+   ========================================== */
+.resumo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 6px;
+  padding: 12px 16px;
+  background: #0d1117;
+  border-bottom: 1px solid #21262d;
+}
+
+.contador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  background: #161b22;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+  transition: border-color 0.2s;
+}
+
+.contador:hover {
+  border-color: #58a6ff;
+}
+
+.contador-icone {
+  font-size: 14px;
+  color: #58a6ff;
+}
+
+.contador-numero {
+  font-size: 20px;
+  font-weight: 800;
+  color: #e6edf3;
+  line-height: 1;
+}
+
+.contador-rotulo {
+  font-size: 9px;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   Abas de navegação
+   ========================================== */
+.abas {
+  display: flex;
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+}
+
+.aba {
+  flex: 1;
+  padding: 9px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #8b949e;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.aba:hover {
+  color: #c9d1d9;
+}
+
+.aba.ativa {
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
+}
+
+/* ==========================================
+   Conteúdo das abas
+   ========================================== */
+.conteudo-aba {
+  display: none;
+  padding: 0;
+}
+
+.conteudo-aba.ativo {
+  display: block;
+}
+
+/* ==========================================
+   Blocos de informação
+   ========================================== */
+.bloco {
+  padding: 12px 16px;
+  border-bottom: 1px solid #21262d;
+}
+
+.bloco-titulo {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e6edf3;
+  margin-bottom: 8px;
+}
+
+.sub-bloco {
+  margin-top: 8px;
+}
+
+.sub-bloco h4 {
+  font-size: 10px;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* ==========================================
+   Lista de domínios
+   ========================================== */
+.lista-dominios {
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.item-dominio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  margin: 2px 0;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.dominio-nome {
+  flex: 1;
+  color: #c9d1d9;
+}
+
+.dominio-tag {
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  color: #0d1117;
+  font-weight: 700;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.tag-propaganda { background: #f85149; }
+.tag-metricas { background: #d29922; }
+.tag-social { background: #58a6ff; }
+.tag-impressao_digital { background: #bc8cff; }
+.tag-cdn { background: #3fb950; }
+.tag-desconhecido { background: #484f58; color: #c9d1d9; }
+
+.vazio {
+  font-size: 11px;
+  color: #484f58;
+  font-style: italic;
+  padding: 4px 0;
+  display: block;
+}
+
+/* ==========================================
+   Grade de cookies
+   ========================================== */
+.grade-cookies {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.item-cookie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+}
+
+.item-cookie.destaque {
+  background: #1c1206;
+  border-color: #d29922;
+}
+
+.cookie-rotulo {
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.cookie-num {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e6edf3;
+}
+
+/* ==========================================
+   Indicadores de status
+   ========================================== */
+.indicador {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.indicador-ok {
+  background: #0d2818;
+  color: #3fb950;
+  border: 1px solid #238636;
+}
+
+.indicador-alerta {
+  background: #1c1206;
+  color: #d29922;
+  border: 1px solid #9e6a03;
+}
+
+.indicador-perigo {
+  background: #1a0609;
+  color: #f85149;
+  border: 1px solid #da3633;
+}
+
+/* ==========================================
+   Detalhes de armazenamento
+   ========================================== */
+.resumo-armazenamento {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.item-chave {
+  padding: 4px 8px;
+  margin: 2px 0;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+  font-size: 11px;
+}
+
+.chave-nome {
+  font-weight: 600;
+  color: #c9d1d9;
+}
+
+.chave-tipo {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: #21262d;
+  color: #8b949e;
+  margin-left: 4px;
+}
+
+.chave-previa {
+  color: #484f58;
+  font-size: 10px;
+  display: block;
+  margin-top: 2px;
+  word-break: break-all;
+}
+
+/* ==========================================
+   Texto de alerta
+   ========================================== */
+.alerta-texto {
+  font-size: 11px;
+  color: #d29922;
+  background: #1c1206;
+  border: 1px solid #9e6a03;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   Itens de ameaça
+   ========================================== */
+.item-ameaca {
+  padding: 6px 8px;
+  margin: 3px 0;
+  background: #1a0609;
+  border: 1px solid #da3633;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.ameaca-categoria {
+  font-weight: 700;
+  color: #f85149;
+  display: block;
+}
+
+.ameaca-descricao {
+  color: #d29922;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   Rodapé
+   ========================================== */
+.rodape {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #161b22;
+  border-top: 1px solid #21262d;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secundario {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+
+.btn-secundario:hover {
+  background: #30363d;
+}
+
+/* ==========================================
+   Relatório — Conceito B
+   ========================================== */
+
+/* Resumo do relatório */
+.relatorio-resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.relatorio-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+}
+
+.relatorio-chave {
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.relatorio-valor {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e6edf3;
+}
+
+.relatorio-nota {
+  font-size: 16px;
+}
+
+/* Categorias do relatório */
+.relatorio-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.relatorio-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+}
+
+.relatorio-cat-icone {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+}
+
+.relatorio-cat-nome {
+  flex: 1;
+  font-size: 11px;
+  color: #c9d1d9;
+}
+
+.relatorio-cat-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6edf3;
+  min-width: 24px;
+  text-align: right;
+}
+
+/* Detecções do relatório */
+.relatorio-deteccoes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.relatorio-det {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #161b22;
+  border-radius: 4px;
+  border: 1px solid #21262d;
+}
+
+.relatorio-det-nome {
+  font-size: 11px;
+  color: #c9d1d9;
+}
+
+.relatorio-det-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.det-seguro {
+  background: #0d2818;
+  color: #3fb950;
+}
+
+.det-detectado {
+  background: #1a0609;
+  color: #f85149;
+}
+
+/* Botão exportar */
+.btn-exportar {
+  width: 100%;
+  padding: 10px;
+  background: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-exportar:hover {
+  background: #30363d;
+  border-color: #58a6ff;
+}
+
+.status-exportar {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: #3fb950;
+  margin-top: 6px;
+  font-weight: 600;
+}
+/* ==========================================
+   Distribuição por categoria — Conceito A
+   ========================================== */
+.distribuicao-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dist-nome {
+  font-size: 10px;
+  color: #8b949e;
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.dist-barra-fundo {
+  flex: 1;
+  height: 14px;
+  background: #21262d;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dist-barra-preenchimento {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+  min-width: 2px;
+}
+
+.dist-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e6edf3;
+  width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Cores por categoria */
+.dist-propaganda { background: #f85149; }
+.dist-metricas { background: #d29922; }
+.dist-social { background: #58a6ff; }
+.dist-impressao_digital { background: #bc8cff; }
+.dist-cdn { background: #3fb950; }
+.dist-desconhecido { background: #484f58; }
+
+/* ==========================================
+   Scrollbar customizada (tema escuro)
+   ========================================== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}

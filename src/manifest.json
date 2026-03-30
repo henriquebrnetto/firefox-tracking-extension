@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "ThirdEye",
+  "version": "1.0.0",
+  "description": "Monitor de privacidade para Firefox — detecta rastreadores, cookies, fingerprinting e ameaças em tempo real.",
+  "author": "Henrique Bernardo Netto — Insper Cybersegurança",
+  "icons": {
+    "48": "icones/vigilia-48.png",
+    "96": "icones/vigilia-96.png"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "cookies",
+    "storage",
+    "tabs",
+    "activeTab",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["dados/dominios_conhecidos.js", "nucleo/monitor.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["nucleo/inspetor.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "48": "icones/vigilia-48.png",
+      "96": "icones/vigilia-96.png"
+    },
+    "default_title": "ThirdEye — Monitor de Privacidade",
+    "default_popup": "interface/painel/painel.html"
+  },
+  "options_ui": {
+    "page": "interface/ajustes/ajustes.html",
+    "open_in_tab": true
+  }
+}

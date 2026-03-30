@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="painel.css">
+  <title>ThirdEye</title>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <div class="cabecalho-topo">
+        <h1 class="logo">◉ ThirdEye</h1>
+        <div class="controle-bloqueio">
+          <label class="interruptor">
+            <input type="checkbox" id="chkBloqueio" checked>
+            <span class="trilho"></span>
+          </label>
+          <span class="rotulo-bloqueio" id="rotuloBloqueio">Proteção ativa</span>
+        </div>
+      </div>
+      <div class="info-site" id="infoSite">Carregando...</div>
+    </header>
+
+    <!-- Barra de nota de privacidade -->
+    <section class="secao-nota">
+      <div class="nota-cabecalho">
+        <span class="nota-titulo">Nota de Privacidade</span>
+        <span class="nota-valor" id="notaValor">--</span>
+      </div>
+      <div class="nota-barra-fundo">
+        <div class="nota-barra-preenchimento" id="notaBarra"></div>
+      </div>
+      <p class="nota-descricao" id="notaDescricao">Analisando a página...</p>
+    </section>
+
+    <!-- Contadores resumo -->
+    <section class="resumo">
+      <div class="contador" id="ctnTerceiros">
+        <span class="contador-icone">◆</span>
+        <span class="contador-numero" id="numTerceiros">0</span>
+        <span class="contador-rotulo">Terceiros</span>
+      </div>
+      <div class="contador" id="ctnRastreadores">
+        <span class="contador-icone">◉</span>
+        <span class="contador-numero" id="numRastreadores">0</span>
+        <span class="contador-rotulo">Rastreadores</span>
+      </div>
+      <div class="contador" id="ctnBloqueados">
+        <span class="contador-icone">▲</span>
+        <span class="contador-numero" id="numBloqueados">0</span>
+        <span class="contador-rotulo">Bloqueados</span>
+      </div>
+      <div class="contador" id="ctnCookies">
+        <span class="contador-icone">●</span>
+        <span class="contador-numero" id="numCookies">0</span>
+        <span class="contador-rotulo">Cookies</span>
+      </div>
+    </section>
+
+    <!-- Navegação por abas -->
+    <nav class="abas">
+      <button class="aba ativa" data-alvo="painelVisao">Visão Geral</button>
+      <button class="aba" data-alvo="painelDetalhes">Detalhes</button>
+      <button class="aba" data-alvo="painelRelatorio">Relatório</button>
+    </nav>
+
+    <!-- Painel: Visão Geral -->
+    <div class="conteudo-aba ativo" id="painelVisao">
+
+      <!-- Rastreadores -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◉ Rastreadores Detectados</h3>
+        <div class="sub-bloco">
+          <h4>Primários (do próprio site)</h4>
+          <div id="listaPrimarios" class="lista-dominios">
+            <span class="vazio">Nenhum detectado</span>
+          </div>
+        </div>
+        <div class="sub-bloco">
+          <h4>Externos (terceiros)</h4>
+          <div id="listaExternos" class="lista-dominios">
+            <span class="vazio">Nenhum detectado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distribuição por tipo — Conceito A -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◆ Distribuição por Categoria</h3>
+        <div id="distribuicaoCategorias" class="distribuicao-container">
+          <span class="vazio">Nenhum rastreador para categorizar</span>
+        </div>
+      </div>
+
+      <!-- Todos os domínios de terceiros — Conceito A -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◆ Todos os Domínios de Terceiros</h3>
+        <div id="listaTodosTerceiros" class="lista-dominios">
+          <span class="vazio">Nenhum domínio de terceiro detectado</span>
+        </div>
+      </div>
+
+      <!-- Bloqueados -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">▲ Domínios Bloqueados</h3>
+        <div id="listaBloqueados" class="lista-dominios">
+          <span class="vazio">Nenhum bloqueado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Painel: Detalhes -->
+    <div class="conteudo-aba" id="painelDetalhes">
+
+      <!-- Cookies Detalhados -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">● Cookies</h3>
+        <div class="grade-cookies">
+          <div class="item-cookie">
+            <span class="cookie-rotulo">1ª Parte — Sessão</span>
+            <span class="cookie-num" id="cookiePrimSessao">0</span>
+          </div>
+          <div class="item-cookie">
+            <span class="cookie-rotulo">1ª Parte — Permanente</span>
+            <span class="cookie-num" id="cookiePrimPerm">0</span>
+          </div>
+          <div class="item-cookie">
+            <span class="cookie-rotulo">3ª Parte — Sessão</span>
+            <span class="cookie-num" id="cookieTercSessao">0</span>
+          </div>
+          <div class="item-cookie">
+            <span class="cookie-rotulo">3ª Parte — Permanente</span>
+            <span class="cookie-num" id="cookieTercPerm">0</span>
+          </div>
+          <div class="item-cookie destaque">
+            <span class="cookie-rotulo">⚡ Longa Duração</span>
+            <span class="cookie-num" id="cookieLongaDuracao">0</span>
+          </div>
+        </div>
+        <!-- Cookie Syncing -->
+        <div id="secaoSincronismo" class="sub-bloco" style="display:none;">
+          <h4>Sincronismo de Cookies Detectado</h4>
+          <div id="listaSincronismo" class="lista-dominios"></div>
+        </div>
+      </div>
+
+      <!-- Armazenamento HTML5 -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◆ Armazenamento HTML5</h3>
+        <div id="statusArmazenamento" class="indicador indicador-ok">Não detectado</div>
+        <div id="detalheArmazenamento" style="display:none;">
+          <div class="resumo-armazenamento">
+            <span>Chaves: <strong id="qtdChaves">0</strong></span>
+            <span>Tamanho: <strong id="tamArmazenamento">0 B</strong></span>
+          </div>
+          <div id="listaChaves" class="lista-dominios"></div>
+        </div>
+      </div>
+
+      <!-- Canvas Fingerprinting -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◉ Impressão Digital (Canvas)</h3>
+        <div id="statusCanvas" class="indicador indicador-ok">Não detectado</div>
+        <div id="detalheCanvas" style="display:none;">
+          <p class="alerta-texto">⚡ Tentativas de impressão digital via Canvas foram detectadas. Essa técnica permite identificar seu navegador de forma única sem cookies.</p>
+          <span>Ocorrências: <strong id="qtdCanvas">0</strong></span>
+        </div>
+      </div>
+
+      <!-- Hijacking -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">▲ Ameaças de Sequestro</h3>
+        <div id="statusSequestro" class="indicador indicador-ok">Nenhuma ameaça</div>
+        <div id="listaSequestro" class="lista-dominios" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Painel: Relatório -->
+    <div class="conteudo-aba" id="painelRelatorio">
+
+      <!-- Resumo geral do relatório -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◉ Resumo da Análise</h3>
+        <div class="relatorio-resumo">
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Página analisada</span>
+            <span class="relatorio-valor" id="relSite">—</span>
+          </div>
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Horário da análise</span>
+            <span class="relatorio-valor" id="relHorario">—</span>
+          </div>
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Total de requisições</span>
+            <span class="relatorio-valor" id="relRequisicoes">0</span>
+          </div>
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Requisições bloqueadas</span>
+            <span class="relatorio-valor" id="relBloqueios">0</span>
+          </div>
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Taxa de bloqueio</span>
+            <span class="relatorio-valor" id="relTaxaBloqueio">0%</span>
+          </div>
+          <div class="relatorio-linha">
+            <span class="relatorio-chave">Nota de privacidade</span>
+            <span class="relatorio-valor relatorio-nota" id="relNota">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detalhamento por categoria -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">◆ Detalhamento por Categoria</h3>
+        <div class="relatorio-categorias" id="relCategorias">
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#58a6ff">◆</span>
+            <span class="relatorio-cat-nome">Domínios de terceiros</span>
+            <span class="relatorio-cat-num" id="relCatTerceiros">0</span>
+          </div>
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#f85149">◉</span>
+            <span class="relatorio-cat-nome">Rastreadores externos</span>
+            <span class="relatorio-cat-num" id="relCatExtRast">0</span>
+          </div>
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#d29922">◉</span>
+            <span class="relatorio-cat-nome">Rastreadores primários</span>
+            <span class="relatorio-cat-num" id="relCatPrimRast">0</span>
+          </div>
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#f85149">▲</span>
+            <span class="relatorio-cat-nome">Domínios bloqueados</span>
+            <span class="relatorio-cat-num" id="relCatBloq">0</span>
+          </div>
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#d29922">●</span>
+            <span class="relatorio-cat-nome">Cookies totais</span>
+            <span class="relatorio-cat-num" id="relCatCookies">0</span>
+          </div>
+          <div class="relatorio-cat">
+            <span class="relatorio-cat-icone" style="color:#bc8cff">●</span>
+            <span class="relatorio-cat-nome">Cookies de longa duração</span>
+            <span class="relatorio-cat-num" id="relCatLonga">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status das detecções -->
+      <div class="bloco">
+        <h3 class="bloco-titulo">▲ Status das Detecções</h3>
+        <div class="relatorio-deteccoes">
+          <div class="relatorio-det">
+            <span class="relatorio-det-nome">Armazenamento HTML5</span>
+            <span class="relatorio-det-status" id="relDetStorage">—</span>
+          </div>
+          <div class="relatorio-det">
+            <span class="relatorio-det-nome">Impressão digital (Canvas)</span>
+            <span class="relatorio-det-status" id="relDetCanvas">—</span>
+          </div>
+          <div class="relatorio-det">
+            <span class="relatorio-det-nome">Sincronismo de cookies</span>
+            <span class="relatorio-det-status" id="relDetSync">—</span>
+          </div>
+          <div class="relatorio-det">
+            <span class="relatorio-det-nome">Ameaças de sequestro</span>
+            <span class="relatorio-det-status" id="relDetHijack">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão exportar -->
+      <div class="bloco">
+        <button id="btnExportar" class="btn btn-exportar">⬇ Copiar Relatório como Texto</button>
+        <span id="statusExportar" class="status-exportar"></span>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <button id="btnAjustes" class="btn btn-secundario">⚙ Configurações</button>
+      <button id="btnAtualizar" class="btn btn-secundario">↻ Atualizar</button>
+    </footer>
+  </div>
+
+  <script src="painel.js"></script>
+</body>
+</html>

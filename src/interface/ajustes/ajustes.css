@@ -1,0 +1,342 @@
+/* ==========================================
+   ThirdEye — Estilos da Página de Ajustes
+   Tema escuro
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+  font-size: 22px;
+  color: #58a6ff;
+  margin-bottom: 4px;
+}
+
+.cabecalho p {
+  color: #8b949e;
+  font-size: 14px;
+}
+
+/* Cartões */
+.cartao {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.cartao h2 {
+  font-size: 16px;
+  color: #e6edf3;
+  margin-bottom: 8px;
+}
+
+.cartao-desc {
+  font-size: 13px;
+  color: #8b949e;
+  margin-bottom: 16px;
+}
+
+/* Opções com toggle */
+.opcao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #21262d;
+}
+
+.opcao:last-child { border-bottom: none; }
+
+.opcao-info label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: #e6edf3;
+}
+
+.opcao-desc {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* Interruptor */
+.interruptor {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.interruptor input { display: none; }
+
+.trilho {
+  position: absolute;
+  inset: 0;
+  background: #30363d;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+
+.trilho::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  bottom: 2px;
+  background: #c9d1d9;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.interruptor input:checked + .trilho { background: #238636; }
+.interruptor input:checked + .trilho::before { transform: translateX(20px); }
+
+/* Campo de adicionar domínio */
+.campo-adicionar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.campo-adicionar input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #21262d;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #0d1117;
+  color: #c9d1d9;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo-adicionar input:focus { border-color: #58a6ff; }
+.campo-adicionar input::placeholder { color: #484f58; }
+
+/* Botões */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primario { background: #238636; color: white; }
+.btn-primario:hover { background: #2ea043; }
+.btn-perigo { background: #da3633; color: white; }
+.btn-perigo:hover { background: #f85149; }
+.btn-ok { background: #238636; color: white; }
+.btn-ok:hover { background: #2ea043; }
+.btn-pequeno { padding: 4px 10px; font-size: 11px; }
+.btn-grande { padding: 12px 32px; font-size: 15px; }
+
+/* Lista de domínios */
+.lista-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.item-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin: 2px 0;
+  background: #0d1117;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #c9d1d9;
+}
+
+.item-lista:hover { background: #161b22; }
+
+.estado-vazio {
+  text-align: center;
+  color: #484f58;
+  font-size: 13px;
+  padding: 20px;
+  font-style: italic;
+}
+
+/* Tabela de metodologia */
+.tabela-metodologia {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.tabela-metodologia th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #58a6ff;
+  color: #0d1117;
+  font-weight: 700;
+}
+
+.tabela-metodologia th:first-child { border-radius: 6px 0 0 0; }
+.tabela-metodologia th:last-child { border-radius: 0 6px 0 0; }
+
+.tabela-metodologia td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #21262d;
+  color: #c9d1d9;
+}
+
+.tabela-metodologia tr:hover td { background: #161b22; }
+
+/* Legenda de notas */
+.legenda-notas {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.legenda-cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Rodapé */
+.rodape {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.status-salvar {
+  font-size: 13px;
+  color: #3fb950;
+  font-weight: 600;
+}
+
+/* Ações de lista (importar/exportar) — Conceito A */
+.acoes-lista {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #21262d;
+}
+
+.btn-neutro {
+  background: #21262d;
+  color: #8b949e;
+  border: 1px solid #30363d;
+}
+
+.btn-neutro:hover {
+  background: #30363d;
+  color: #c9d1d9;
+}
+
+/* Controle de sensibilidade — Conceito A */
+.controle-sensibilidade {
+  padding: 8px 0;
+}
+
+.sensibilidade-rotulos {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 8px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #58a6ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #0d1117;
+  transition: background 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #79c0ff;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #58a6ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #0d1117;
+}
+
+.slider::-moz-range-track {
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+}
+
+.sensibilidade-desc {
+  font-size: 12px;
+  color: #8b949e;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #0d1117;
+  border-radius: 6px;
+  border: 1px solid #21262d;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; }
