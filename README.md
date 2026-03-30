@@ -2,6 +2,8 @@
 
 **Extensão para Firefox** desenvolvida como Avaliação Intermediária de Cybersegurança do Insper.
 
+**Autores:** Henrique Bucci e Luigi Lopes
+
 ## O que é o ThirdEye?
 
 ThirdEye é uma extensão para Firefox construída para monitorar, detectar e classificar ameaças invisíveis à privacidade enquanto você navega na web. Em tempo real, a extensão analisa o comportamento das páginas visitadas e apresenta um diagnóstico completo de forma didática e transparente.
